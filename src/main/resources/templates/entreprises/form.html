@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Entreprise Form</title>
+</head>
+<body>
+<h1 th:text="${entreprise.id == null ? 'Add Entreprise' : 'Edit Entreprise'}"></h1>
+<form th:action="@{/entreprises/save}" method="post" th:object="${entreprise}">
+    <input type="hidden" th:field="*{id}" />
+    Nom: <input type="text" th:field="*{username}" /><br/>
+    Email: <input type="email" th:field="*{email}" /><br/>
+    Domaine: <input type="text" th:field="*{activity}" /><br/>
+    Username: <input type="text" th:field="*{username}" /><br/>
+    <button type="submit">Save</button>
+</form>
+</body>
+</html>

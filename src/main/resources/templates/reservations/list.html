@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Liste des Réservations</title>
+</head>
+<body>
+<h1>Liste des Réservations</h1>
+<a href="/reservations/form">Ajouter une Réservation</a>
+<table border="1">
+    <tr>
+        <th>ID</th><th>Date</th><th>Durée</th><th>Coût</th><th>Type</th><th>État</th><th>Entreprise</th><th>Actions</th>
+    </tr>
+    <tr th:each="r : ${reservations}">
+        <td th:text="${r.id}"></td>
+        <td th:text="${r.dateReservation}"></td>
+        <td th:text="${r.duree}"></td>
+        <td th:text="${r.cout}"></td>
+        <td th:text="${r.typeReservation}"></td>
+        <td th:text="${r.etat}"></td>
+        <td th:text="${r.entreprise.nom}"></td>
+        <td>
+            <a th:href="@{'/reservations/edit/' + ${r.id}}">Modifier</a> |
+            <a th:href="@{'/reservations/delete/' + ${r.id}}" onclick="return confirm('Confirmer la suppression ?')">Supprimer</a>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

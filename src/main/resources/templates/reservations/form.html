@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Reservation Form</title>
+</head>
+<body>
+<h1 th:text="${reservation.id == null ? 'Ajouter une Réservation' : 'Modifier la Réservation'}"></h1>
+<form th:action="@{/reservations/save}" method="post" th:object="${reservation}">
+    <input type="hidden" th:field="*{id}" />
+
+    Date Réservation: <input type="date" th:field="*{dateReservation}" required/><br/>
+
+    Durée (en heures): <input type="number" th:field="*{duree}" min="1" required/><br/>
+
+    Coût (€): <input type="number" th:field="*{cout}" step="0.01" required/><br/>
+
+    Type de Réservation:
+    <select th:field="*{typeReservation}" required>
+        <option th:each="t : ${types}" th:value="${t}" th:text="${t}"></option>
+    </select><br/>
+
+    État de la Réservation:
+    <select th:field="*{etat}" required>
+        <option th:each="e : ${etats}" th:value="${e}" th:text="${e}"></option>
+    </select><br/>
+
+    Entreprise:
+    <select th:field="*{entreprise}" required>
+        <option th:each="e : ${entreprises}" th:value="${e}" th:text="${e.nom}"></option>
+    </select><br/>
+
+    <button type="submit">Enregistrer</button>
+</form>
+</body>
+</html>

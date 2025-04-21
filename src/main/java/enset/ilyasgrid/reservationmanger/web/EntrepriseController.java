@@ -18,7 +18,7 @@ public class EntrepriseController {
     @GetMapping
     public String listEntreprises(Model model) {
         List<Entreprise> entreprises = entrepriseRepository.findAll();
-        System.out.println(entreprises.size());
+//        System.out.println(entreprises.size());
         model.addAttribute("entreprises", entreprises);
         return "entreprises/list";
     }
@@ -37,6 +37,7 @@ public class EntrepriseController {
     @GetMapping("/edit/{id}")
     public String editEntreprise(@PathVariable Long id, Model model) {
         Entreprise entreprise = entrepriseRepository.findById(id).orElse(null);
+//        System.out.println(entreprise);
         model.addAttribute("entreprise", entreprise);
         return "entreprises/form";
     }
